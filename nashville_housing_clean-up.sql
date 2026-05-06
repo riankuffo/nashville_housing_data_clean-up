@@ -183,7 +183,7 @@ WHERE property_address IS NULL;
 
 
 
-Step 2.1: Property addresses beginning with 0.
+--  Step 2.1: Property addresses beginning with 0.
 
 --  There are many property addresses beginning with 0, which is likely unintentional.
 --  I will check to see if this information can be rectified using the other address field we have. 
