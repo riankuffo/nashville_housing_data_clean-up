@@ -7,7 +7,7 @@ What factors most influence residential sale prices in Nashville, and what patte
 
 Dataset:
 
-Source: [Kaggle — Nashville Housing Data](https://www.kaggle.com/datasets/tmthyjames/nashville-housing-data)
+Source: [Nashville Housing Data](https://www.kaggle.com/datasets/tmthyjames/nashville-housing-data)
 Domain: Residential and commercial real estate transactions, Nashville, Tennessee.
 Raw row count: 56,636 records
 Cleaned row count: 55,949 records
