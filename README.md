@@ -12,6 +12,7 @@ Source: [Nashville Housing Data](https://www.kaggle.com/datasets/tmthyjames/nash
 Domain: Residential and commercial real estate transactions, Nashville, Tennessee.
 
 Raw row count: 56,636 records
+
 Cleaned row count: 55,949 records
 
 
