@@ -5,12 +5,15 @@ Business Question:
 
 What factors most influence residential sale prices in Nashville, and what patterns emerge across property type, tax district, and vacancy status?
 
+
 Dataset:
 
 Source: [Nashville Housing Data](https://www.kaggle.com/datasets/tmthyjames/nashville-housing-data)
 Domain: Residential and commercial real estate transactions, Nashville, Tennessee.
+
 Raw row count: 56,636 records
 Cleaned row count: 55,949 records
+
 
 Tools:
 
@@ -22,11 +25,13 @@ Tableau Public.
 Data Cleaning Summary
 The raw dataset required standardization before analysis could begin. The following steps were taken:
 
+
 Null handling and removal
 
 Identified 159 null values in the property_address column and 30,619 in the owner address field.
 Filled in 16 null property addresses by matching parcel_id where a duplicate row contained the missing information.
 Remaining nulled property addresses were removed as the information could not be recovered from the dataset.
+
 
 Address standardization
 
@@ -36,6 +41,7 @@ Removed leading and extra whitespaces using TRIM().
 Replaced consecutive whitespaces with single spaces using REGEXP_REPLACE(property_address, '\s+', ' ', 'g').
 Corrected 30 property addresses missing street numbers by replacing them with the owner's address.
 
+
 Duplicate removal
 
 Identified and removed duplicate rows using ROW_NUMBER() partitioned by parcel_id, property_address, sale_price, legal_ref, and sale_date
@@ -43,6 +49,7 @@ Used the CTID as the primary key for deletion since the dataset's ID column was 
 Removed all remaining property addresses that began with zero that could not be corrected
 
 The result of these steps was 687 rows removed through cleaning. This is a reduction of 1.2% from the raw dataset, preserving 55,949 clean records for analysis.
+
 
 Key Findings:
 1. Average sale price
@@ -56,8 +63,10 @@ The Urban Services District recorded the highest number of property sales of all
 5. Vacant properties sell at a $22,594 discount
 Properties sold as vacant transacted at an average discount of $22,594 compared to occupied properties. This is a 6.9% reduction relative to the overall average sale price.
 
+
 Business Recommendation:
 Buyers seeking value should focus on vacant zoned multi-family parcels in the Urban Services District. This area reflects a market where transaction volume is highest, and the entry prices are lowest. Those who sell vacant land in this area can hold a strong position in the market, as average values are almost ten times that of the benchmark. The average $22,594 vacancy discount across property types can also suggest that development has the opportunity to vastly increase property value for sellers.
+
 
 Dashboard:
 This includes exploratory data analysis visualizations about this topic in Tableau Public.
