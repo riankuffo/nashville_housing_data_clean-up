@@ -9,6 +9,7 @@ What factors most influence residential sale prices in Nashville, and what patte
 Dataset:
 
 Source: [Nashville Housing Data](https://www.kaggle.com/datasets/tmthyjames/nashville-housing-data)
+
 Domain: Residential and commercial real estate transactions, Nashville, Tennessee.
 
 Raw row count: 56,636 records
@@ -23,18 +24,18 @@ PostgreSQL (pgAdmin 4),
 Tableau Public.
 
 
-Data Cleaning Summary
+Data Cleaning Summary:
 The raw dataset required standardization before analysis could begin. The following steps were taken:
 
 
-Null handling and removal
+Null handling and removal:
 
 Identified 159 null values in the property_address column and 30,619 in the owner address field.
 Filled in 16 null property addresses by matching parcel_id where a duplicate row contained the missing information.
 Remaining nulled property addresses were removed as the information could not be recovered from the dataset.
 
 
-Address standardization
+Address standardization:
 
 Corrected 27 property addresses beginning with zero by replacing them with the corresponding owner address where street names matched.
 Corrected two owner addresses that begin with zero, using the corresponding property address.
@@ -43,7 +44,7 @@ Replaced consecutive whitespaces with single spaces using REGEXP_REPLACE(propert
 Corrected 30 property addresses missing street numbers by replacing them with the owner's address.
 
 
-Duplicate removal
+Duplicate removal:
 
 Identified and removed duplicate rows using ROW_NUMBER() partitioned by parcel_id, property_address, sale_price, legal_ref, and sale_date
 Used the CTID as the primary key for deletion since the dataset's ID column was not distinct due to previous restoration attempts.
