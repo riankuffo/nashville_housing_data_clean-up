@@ -25,7 +25,9 @@ Tableau Public.
 
 
 Data Cleaning Summary:
-The raw dataset required standardization before analysis could begin. The following steps were taken:
+The raw dataset required standardization before analysis could begin. 
+
+The following steps were taken:
 
 
 Null handling and removal:
