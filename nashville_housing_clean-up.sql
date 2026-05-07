@@ -1,6 +1,6 @@
 -- Nashville housing clean-up project
 -- Author: Rian Kuffo
--- Tools:  Excel, PostgreSQL (pgAdmin 4)
+-- Tools:  Excel, PostgreSQL (pgAdmin 4), Tableau
 -- Source: https://www.kaggle.com/datasets/tmthyjames/nashville-housing-data
 
 
@@ -329,7 +329,7 @@ SET address = REGEXP_REPLACE(address, ' {2,}', ' ');
 
 
 
---  Step 2.3 Property addresses missing house numbers.
+--  Step 2.3: Property addresses missing house numbers.
 
 --  Glancing through the property addresses, we find many missing their respective street numbers.
 --  To rectify, we first discover where there are instances of these missing numbers in the other 'address' column.
@@ -351,6 +351,156 @@ UPDATE nashville_housing
 SET property_address = address
 WHERE property_address !~ '^[0-9]'
     AND address ~ '^[1-9]';
+
+
+
+
+
+--  Step 3: Remove duplicates.
+
+--  Now that we have utilized duplicated fields for missing information, we can begin to remove them.
+--  First, I will preview duplicate rows using the CTE and SELECT query below.
+
+
+WITH ranked AS (
+    SELECT id,
+        ROW_NUMBER() OVER (
+            PARTITION BY
+                parcel_id,
+                property_address,
+                sale_price,
+                legal_ref,
+                sale_date
+            ORDER BY id
+        ) AS row_num
+    FROM nashville_housing
+)
+
+SELECT COUNT(*) AS duplicate_rows
+FROM ranked
+WHERE row_num > 1;
+
+
+--  This query returns a number that is our target for removal, 
+--  so by using the following query, we can drop the duplicate rows.
+
+
+DELETE FROM nashville_housing
+WHERE ctid IN (
+    SELECT ctid
+    FROM (
+        SELECT ctid,
+            ROW_NUMBER() OVER (
+                PARTITION BY
+                    parcel_id,
+                    property_address,
+                    sale_price,
+                    legal_ref,
+                    sale_date
+                ORDER BY ctid
+            ) AS row_num
+        FROM nashville_housing
+    ) ranked
+    WHERE row_num > 1
+);
+
+
+
+
+
+--  Step 3.1: Remove null property addresses
+
+--  We will now remove the null property address rows.
+--  To preview this information, I will use the query below.
+
+
+SELECT * AS null_address_rows
+FROM nashville_housing
+WHERE property_address IS NULL;
+
+
+--  To remove these nulls, I will use this query.
+
+
+DELETE
+FROM nashville_housing
+WHERE property_address IS NULL;
+
+
+
+
+--  Step 3.2: Remove property addresses beginning with 0.
+
+--  First, we will preview this information with this query.
+
+SELECT *
+FROM nashville_housing
+WHERE property_address ~ '^[0]';
+
+
+--  Once we have this information, we will back up the table and use the following query for removal.
+
+
+DELETE
+FROM nashville_housing
+WHERE property_address ~ '^[0]';
+
+
+
+
+
+--  Step 4: Data quality check.
+
+--  Now that we have cleaned the most apparent errors and standardized the address strings,
+--  we can begin to glance over the data for quality assurance.
+
+--  I will start with a general count of rows after the cleaning to compare with before.
+
+
+SELECT COUNT(*) AS final_cleaning_count
+FROM nashville_housing;
+
+
+--  We can also preview the information, using the following query.
+
+
+SELECT *
+FROM nashville_housing
+ORDER BY id
+LIMIT 20;
+
+
+--  Take a look at some of the summary statistics as well.
+
+
+SELECT ROUND(AVG(sale_price), 2)    AS avg_sale_price,
+    MIN(sale_price)                 AS min_sale_price,
+    MAX(sale_price)                 AS max_sale_price,
+    ROUND(AVG(acreage), 4)          AS avg_acre,
+    MIN(year_built)                 AS oldest_built,
+    MAX(year_built)                 AS newest_built
+FROM nashville_housing;
+
+
+--  And for a final check, we can see how many nulls are present in key columns.
+
+
+SELECT COUNT(*) - COUNT(property_address)    AS null_property_address,
+    COUNT(*) - COUNT(sale_date)             AS null_sale_date,
+    COUNT(*) - COUNT(sale_price)            AS null_sale_price
+FROM nashville_housing;
+
+
+--  Of which there are none at this time.
+
+
+
+
+
+--  Step 5: Export to CSV.
+
+--  From here, I can export this table back to CSV to import into Tableau and begin building a visualization to aid with
+--  exploratory analysis, highlighting key metrics, and aligning business objectives.
 
 
 
