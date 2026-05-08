@@ -51,7 +51,8 @@ Corrected 30 property addresses missing street numbers by replacing them with th
 
 Duplicate removal:
 
-Identified and removed duplicate rows using ROW_NUMBER() partitioned by parcel_id, property_address, sale_price, legal_ref, and sale_date
+Identified and removed duplicate rows using ROW_NUMBER() partitioned by parcel_id, property_address, sale_price, legal_ref, and sale_date.
+These columns were used because a true duplicate must match across all five fields, since these transactions may occur at the same address.
 Used the CTID as the primary key for deletion since the dataset's ID column was not distinct due to previous restoration attempts.
 Removed all remaining property addresses that began with zero that could not be corrected
 
