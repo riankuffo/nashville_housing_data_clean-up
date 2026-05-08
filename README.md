@@ -52,7 +52,7 @@ Identified and removed duplicate rows using ROW_NUMBER() partitioned by parcel_i
 Used the CTID as the primary key for deletion since the dataset's ID column was not distinct due to previous restoration attempts.
 Removed all remaining property addresses that began with zero that could not be corrected
 
-The result of these steps was 687 rows removed through cleaning. This is a reduction of 1.2% from the raw dataset, preserving 55,949 clean records for analysis.
+The result of these steps was 687 rows removed through cleaning. This is a 1.2% reduction from the raw dataset, preserving 55,949 clean records for analysis.
 
 
 Key Findings:
@@ -63,13 +63,13 @@ Vacant commercial land had the highest average sale price at $3,235,294. This re
 3. Vacant zoned multi-family is the most accessible entry point
 At an average sale price of $12,000, vacant zoned multi-family land represents the lowest-costing property category in the dataset.
 4. Urban Services District drives the most transaction volume
-The Urban Services District recorded the highest number of property sales of all tax districts in the dataset. This alludes to it being the most active real estate market in Nashville.
+The Urban Services District recorded the highest number of property sales of all tax districts in the dataset. This suggests it is the most active real estate market in Nashville.
 5. Vacant properties sell at a $22,594 discount
 Properties sold as vacant transacted at an average discount of $22,594 compared to occupied properties. This is a 6.9% reduction relative to the overall average sale price.
 
 
 Business Recommendation:
-Three independent patterns emerged: vacant multi-family is the cheapest category citywide. Vacant commercial commands the highest premiums (ten times the benchmark). Urban Services District drives the most volume across all categories. Buyers seeking value should investigate vacant multi-family parcels as district-level pricing within that category warrants further analysis.
+Three independent patterns emerged. Vacant multi-family parcels are the cheapest category citywide. Vacant commercial commands the highest premiums (ten times the benchmark). Urban Services District drives the most volume across all categories. If you're looking for value, consider vacant multi-family parcels. Within that category, district-level pricing warrants further analysis.
 
 
 Dashboard:
