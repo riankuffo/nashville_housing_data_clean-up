@@ -73,6 +73,7 @@ Properties sold as vacant transacted at an average discount of $22,594 compared 
 
 
 Business Recommendation:
+
 Three independent patterns emerged. Vacant multi-family parcels are the cheapest category citywide. Vacant commercial commands the highest premiums (ten times the benchmark). Urban Services District drives the most volume across all categories. If you're looking for value, consider vacant multi-family parcels. Within that category, district-level pricing warrants further analysis.
 
 
