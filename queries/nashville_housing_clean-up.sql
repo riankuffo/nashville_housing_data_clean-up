@@ -19,7 +19,6 @@
 
 --  I took the liberty of finding the maximum number of characters in each column using the Excel LEN() and MAX() functions. 
 --  I used that number for the character varying and numeric data-type columns.
---  I have provided both CSV files in the repository for reference to the changes made.
 
 --  Attached below is the code I used to create the table, 
 --  then the code used to import the CSV to the SQL editor pgAdmin. 
@@ -166,7 +165,7 @@ FROM nashville_housing AS b
 WHERE a.parcel_id       = b.parcel_id
     AND a.id     	       <> b.id
     AND a.property_address IS NULL
-    AND b.propery_address IS NOT NULL;
+    AND b.property_address IS NOT NULL;
 
 
 --  We will then use the following query to see if the missing nulls were updated.
@@ -414,7 +413,7 @@ WHERE ctid IN (
 --  To preview this information, I will use the query below.
 
 
-SELECT * AS null_address_rows
+SELECT *
 FROM nashville_housing
 WHERE property_address IS NULL;
 
