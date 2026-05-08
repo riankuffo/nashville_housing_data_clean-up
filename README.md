@@ -69,7 +69,7 @@ Properties sold as vacant transacted at an average discount of $22,594 compared 
 
 
 Business Recommendation:
-Buyers seeking value should focus on vacant zoned multi-family parcels in the Urban Services District. This area reflects a market where transaction volume is highest, and the entry prices are lowest. Those who sell vacant land in this area can hold a strong position in the market, as average values are almost ten times that of the benchmark. The average $22,594 vacancy discount across property types can also suggest that development has the opportunity to vastly increase property value for sellers.
+Three independent patterns emerged: vacant multi-family is the cheapest category citywide. Vacant commercial commands the highest premiums (ten times the benchmark). Urban Services District drives the most volume across all categories. Buyers seeking value should investigate vacant multi-family parcels as district-level pricing within that category warrants further analysis.
 
 
 Dashboard:
