@@ -5,12 +5,17 @@ Business Question:
 
 What factors most influence residential sale prices in Nashville, and what patterns emerge across property type, tax district, and vacancy status?
 
+
 Dataset:
 
-Source: [Kaggle — Nashville Housing Data](https://www.kaggle.com/datasets/tmthyjames/nashville-housing-data)
+Source: [Nashville Housing Data](https://www.kaggle.com/datasets/tmthyjames/nashville-housing-data)
+
 Domain: Residential and commercial real estate transactions, Nashville, Tennessee.
+
 Raw row count: 56,636 records
+
 Cleaned row count: 55,949 records
+
 
 Tools:
 
@@ -19,16 +24,20 @@ PostgreSQL (pgAdmin 4),
 Tableau Public.
 
 
-Data Cleaning Summary
-The raw dataset required standardization before analysis could begin. The following steps were taken:
+Data Cleaning Summary:
+The raw dataset required standardization before analysis could begin. 
 
-Null handling and removal
+The following steps were taken:
+
+
+Null handling and removal:
 
 Identified 159 null values in the property_address column and 30,619 in the owner address field.
 Filled in 16 null property addresses by matching parcel_id where a duplicate row contained the missing information.
 Remaining nulled property addresses were removed as the information could not be recovered from the dataset.
 
-Address standardization
+
+Address standardization:
 
 Corrected 27 property addresses beginning with zero by replacing them with the corresponding owner address where street names matched.
 Corrected two owner addresses that begin with zero, using the corresponding property address.
@@ -36,13 +45,15 @@ Removed leading and extra whitespaces using TRIM().
 Replaced consecutive whitespaces with single spaces using REGEXP_REPLACE(property_address, '\s+', ' ', 'g').
 Corrected 30 property addresses missing street numbers by replacing them with the owner's address.
 
-Duplicate removal
+
+Duplicate removal:
 
 Identified and removed duplicate rows using ROW_NUMBER() partitioned by parcel_id, property_address, sale_price, legal_ref, and sale_date
 Used the CTID as the primary key for deletion since the dataset's ID column was not distinct due to previous restoration attempts.
 Removed all remaining property addresses that began with zero that could not be corrected
 
 The result of these steps was 687 rows removed through cleaning. This is a reduction of 1.2% from the raw dataset, preserving 55,949 clean records for analysis.
+
 
 Key Findings:
 1. Average sale price
@@ -56,8 +67,10 @@ The Urban Services District recorded the highest number of property sales of all
 5. Vacant properties sell at a $22,594 discount
 Properties sold as vacant transacted at an average discount of $22,594 compared to occupied properties. This is a 6.9% reduction relative to the overall average sale price.
 
+
 Business Recommendation:
-Buyers seeking value should focus on vacant zoned multi-family parcels in the Urban Services District. This area reflects a market where transaction volume is highest, and the entry prices are lowest. Those who sell vacant land in this area can hold a strong position in the market, as average values are almost ten times that of the benchmark. The average $22,594 vacancy discount across property types can also suggest that development has the opportunity to vastly increase property value for sellers.
+Three independent patterns emerged: vacant multi-family is the cheapest category citywide. Vacant commercial commands the highest premiums (ten times the benchmark). Urban Services District drives the most volume across all categories. Buyers seeking value should investigate vacant multi-family parcels as district-level pricing within that category warrants further analysis.
+
 
 Dashboard:
 This includes exploratory data analysis visualizations about this topic in Tableau Public.
