@@ -1,6 +1,9 @@
 # Nashville Housing Data Clean-Up & EDA
 
 
+[<img width="1421" height="614" alt="image" src="https://github.com/user-attachments/assets/a6c32b56-dea8-4c2c-a7bc-b27d7e16e46e" />](https://public.tableau.com/app/profile/rian.kuffo/viz/NashvilleHousingExploratoryDataAnalysis/NashvilleHousingDashboard?publish=yes)
+
+
 Business Question:
 
 What factors most influence residential sale prices in Nashville, and what patterns emerge across property type, tax district, and vacancy status?
