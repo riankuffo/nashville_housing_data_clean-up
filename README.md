@@ -76,6 +76,26 @@ Business Recommendation:
 Three independent patterns emerged. Vacant multi-family parcels are the cheapest category citywide. Vacant commercial commands the highest premiums (ten times the benchmark). Urban Services District drives the most volume across all categories. If you're looking for value, consider vacant multi-family parcels. Within that category, district-level pricing warrants further analysis.
 
 
+Limitations:
+
+Unrecoverable null addresses.
+159 null property addresses were identified in the raw data. Only 16 could be recovered by matching on parcel_id against duplicate rows. The remaining 143 were removed entirely as no recovery method was available within the dataset.
+
+Zero-prefixed addresses.
+57 property addresses beginning with 0 could not be corrected due to a lack of matching information elsewhere in the dataset and were removed. The underlying cause could not be determined from the data alone.
+
+Self-referential address correction.
+Address corrections in Steps 2.1 and 2.3 rely on the assumption that the owner address and property address columns refer to the same physical location. This could introduce errors in cases where a property owner lives at a different address from the property sold. 
+
+Vacancy status ambiguity.
+The sold_as_vacant field reflects the property's status upon sale. It does not indicate whether the property was developed or demolished. The $22,594 vacancy discount identified in the analysis should be interpreted as transactional pricing rather than a true measure of the property's value.
+
+Removing records reduces dataset completeness.
+A total of 687 rows were removed during cleaning. While this is a small proportion, about 1.2%, the removed records were not randomly distributed. They were concentrated in specific categories. This being nulls, addresses beginning with zero, and duplicates. All of which may introduce bias into the cleaned dataset.
+
+Tax groups represent a large null influx.
+The tax_district column contains a little more than 30,000 null values. This means the sales volume by tax district analysis only reflects the records where this information was present. Thus, it should not be treated as a true representation of all transaction activity across all the Nashville districts.
+
 Dashboard:
 This includes exploratory data analysis visualizations about this topic in Tableau Public.
 To view, please click [here](https://public.tableau.com/app/profile/rian.kuffo/viz/NashvilleHousingExploratoryDataAnalysis/NashvilleHousingDashboard?publish=yes).
